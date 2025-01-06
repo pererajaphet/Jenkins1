@@ -1,29 +1,23 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:21-alpine'
-        }
+    agent any
+
+    parameters {
+        string(name: 'NAME', defaultValue: 'M. Jenkins', description: 'Qui est-ce ?')
+        text(name: 'TEXT', defaultValue: 'Un text', description: 'Une description')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'true ou False')
+        choice(name: 'CHOISE', choices: ['un', 'deux', 'trois'], description: 'Une liste')
+        password(name: 'PASSWORD', defaultValue: true, description: 'un mot de passe')
     }
 
     stages {
-        stage('Pull Docker Image') {
-            steps {
-                sh 'docker pull node:21-alpine'
-            }
-        }
         stage("Build"){
             steps {
-                sh 'npm -v'
+                echo "NAME : ${ NAME }"
+                echo "TEXT : ${ TEXT }"
+                echo "TOGGLE : ${ TOGGLE }"
+                echo "CHOISE : ${ CHOISE }"
+                echo "NAME : ${ NAME }"
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'always !'
-        }
-        success {
-            echo 'success !'
         }
     }
 }
