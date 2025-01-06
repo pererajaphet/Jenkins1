@@ -12,10 +12,10 @@ pipeline {
     stages {
         stage("Build"){
             steps {
-                echo "PERSONNE : ${ PERSONNE }"
-                echo "TEXT : ${ TEXT }"
-                echo "TOGGLE : ${ TOGGLE }"
-                echo "CHOISE : ${ CHOISE }"
+                echo "PERSONNE : ${PERSONNE}"
+                echo "TEXT : ${TEXT}"
+                echo "TOGGLE : ${TOGGLE}"
+                echo "CHOISE : ${CHOISE}"
             }
         }
     }
