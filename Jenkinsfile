@@ -1,19 +1,24 @@
 pipeline {
-    agent any
-
-    environment {
-        USERNAME = "Japhet"
+    agent {
+        docker {
+            image "node:21alpine"
+        }
     }
 
     stages {
         stage("Build"){
             steps {
-                echo "BRANCH_NAME : ${ env.BRANCH_NAME }"
-                echo "CI : ${ env.CI }"
-                echo "JENKINS_URL : ${ env.JENKINS_URL }"
-                echo "BRANCH_IS_PRIMARY : ${ env.BRANCH_IS_PRIMARY }"
-                echo "USERNAME : ${ env.USERNAME }"
+                sh 'npm -v'
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'always !'
+        }
+        success {
+            echo 'success !'
         }
     }
 }
