@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment {
+        DEPLOY_TO = 'production'
+    }
     stages {
         stage("Build"){
             steps {
@@ -9,7 +12,8 @@ pipeline {
         }
         stage("Deployment production"){
             when {
-                branch "prod"
+                branch "master"
+                environment name: 'DEPLOY_TO' value: 'production'
             }
             steps {
                 echo 'Deploy ...'
