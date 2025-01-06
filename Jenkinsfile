@@ -6,7 +6,7 @@ pipeline {
         text(name: 'TEXT', defaultValue: 'Un text', description: 'Une description')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'true ou False')
         choice(name: 'CHOISE', choices: ['un', 'deux', 'trois'], description: 'Une liste')
-        password(name: 'PASSWORD', defaultValue: true, description: 'un mot de passe')
+        password(name: 'PASSWORD', defaultValue: "SECRET", description: 'un mot de passe')
     }
 
     stages {
