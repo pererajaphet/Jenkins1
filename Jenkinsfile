@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        USERNAME = "Japhet"
+    }
+
     stages {
         stage("Build"){
             steps {
@@ -8,6 +12,7 @@ pipeline {
                 echo "CI : ${ env.CI }"
                 echo "JENKINS_URL : ${ env.JENKINS_URL }"
                 echo "BRANCH_IS_PRIMARY : ${ env.BRANCH_IS_PRIMARY }"
+                echo "USERNAME : ${ env.USERNAME }"
             }
         }
     }
