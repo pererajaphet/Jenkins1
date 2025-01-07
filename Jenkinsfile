@@ -13,8 +13,7 @@ pipeline {
                         values 'firefox', 'chrome', 'safari'
                     }
                 }
-            }
-            stages {
+                stages {
                 stage('Build') {
                     steps {
                         echo "construire pour ${ PLATEFORM } - ${ BROWSER }"
@@ -25,6 +24,7 @@ pipeline {
                         echo "construire pour ${ PLATEFORM } - ${ BROWSER }"
                     }
                 }
+            }
             }
         }
     }
