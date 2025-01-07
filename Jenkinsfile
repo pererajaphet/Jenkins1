@@ -1,22 +1,24 @@
 pipeline {
     agent any
-
-    environment {
-        DEPLOY_TO = 'production'
-    }
     stages {
-        stage("Build"){
+        stage('Build et Test') {
             steps {
-                echo 'Build ...'
+                echo "Construire et tester l'application."
             }
         }
-        stage("Deployment production"){
-            when {
-                branch "master"
-                environment name: 'DEPLOY_TO' , value: 'production'
-            }
-            steps {
-                echo 'Deploy ...'
+        stage('Déploiement parallèle') {
+            failFast true
+            parallel {
+                stage('Déploiement Dev') {
+                    steps {
+                        echo "Déploiement en environnement de développement."
+                    }
+                }
+                stage('Déploiement Staging') {
+                    steps {
+                        echo "Déploiement en environnement de préproduction."
+                    }
+                }
             }
         }
     }
