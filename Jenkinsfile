@@ -2,21 +2,27 @@ pipeline {
     agent any
     stages {
         stage('Build et Test') {
-            steps {
-                echo "Construire et tester l'application."
-            }
-        }
-        stage('Déploiement parallèle') {
-            failFast true
-            parallel {
-                stage('Déploiement Dev') {
-                    steps {
-                        echo "Déploiement en environnement de développement."
+            matrix {
+                axes {
+                    axis {
+                        name "PLATEFORM"
+                        values 'linux', 'macos', 'windows'
+                    }
+                    axis {
+                        name "BROWSER"
+                        values 'firefox', 'chrome', 'safari'
                     }
                 }
-                stage('Déploiement Staging') {
+            }
+            stages {
+                stage('Build') {
                     steps {
-                        echo "Déploiement en environnement de préproduction."
+                        echo "construire pour ${ PLATEFORM } - ${ BROWSER }"
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo "construire pour ${ PLATEFORM } - ${ BROWSER }"
                     }
                 }
             }
